@@ -100,7 +100,7 @@ void linearSieve()
 //==================================================================
 ll powmod(ll a, ll b)
 {
-    if (b==0)   return 0;
+    if (b==0)   return 1;
     if (b==1)   return a;
     ll pw = 1;
     if (b%2)    pw = a % MOD;
