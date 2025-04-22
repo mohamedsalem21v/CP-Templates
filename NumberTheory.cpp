@@ -102,11 +102,16 @@ ll powmod(ll a, ll b)
 {
     if (b==0)   return 1;
     if (b==1)   return a;
-    ll pw = 1;
-    if (b%2)    pw = a % MOD;
-    ll x = powmod(a, b/2);
-    pw = pw * x * x;
-    return pw % MOD;
+    ll res = a ;
+    ll res2 = 1 ;
+    while (b >= 2)
+    {
+        if (b % 2)
+            res2 = (res*res2) % MOD ;
+        b /= 2;
+        res = (res*res) % MOD;
+    }
+    return (res*res2) % MOD;
 }
 ll add(ll a,ll b)
 {
