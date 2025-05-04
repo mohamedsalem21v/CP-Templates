@@ -9,8 +9,8 @@ tree_order_statistics_node_update>;
 template <class T> 
 using multi_ordered_set = tree<T, null_type, less_equal<T>,
 rb_tree_tag, tree_order_statistics_node_update>;
-//order_of_key(n)  It returns to the number of items that are strictly smaller than our item k in O(logn)
-//find_by_order(n)  It returns to an iterator to the kth element (counting from zero) in the set in O(logn)
+//order_of_key(n)  It returns the number of items that are strictly smaller than our item k in O(logn)
+//find_by_order(n)  It returns an iterator to the kth element (counting from zero) in the set in O(logn)
 #define endl "\n"
 #define sp " "
 #define ll long long
@@ -36,33 +36,7 @@ void FastIo()
 
 void solve()
 {
-    int n,q;    cin >> n >> q;
-    int sz = 1002;
-    vector<vector<ull>> pfx2d(sz,vector<ull>(sz));
-    while(n--)
-    {
-        int h,w;    cin >> h >> w;
-        pfx2d[h][w] += h*w;
-        
-    }
-    for(int row = 1; row < sz; row++)
-    {
-        for(int col = 1; col < sz; col++)
-            pfx2d[row][col] += pfx2d[row][col-1];
-    }
-
-    for(int col = 1; col < sz; col++)
-    {
-        for(int row = 1; row < sz; row++)
-            pfx2d[row][col] += pfx2d[row-1][col];
-    }
-    while(q--)
-    {
-        int a,b,x,y;    cin >> a >> b >> x >> y;
-        ull ans = pfx2d[x-1][y-1] - pfx2d[a][y-1] - pfx2d[x-1][b] + pfx2d[a][b];
-        cout << ans << endl;
-    }
-
+    
 }
 
 int main()
