@@ -98,20 +98,19 @@ void linearSieve()
     }
 }
 //==================================================================
-ll powmod(ll a, ll b)
+ll powmod(ll x, ll y)
 {
-    if (b==0)   return 1;
-    if (b==1)   return a;
-    ll res = a ;
-    ll res2 = 1 ;
-    while (b >= 2)
+    ll res = 1;
+    x = x % MOD;
+    if (x == 0) return 0;
+    while (y > 0)
     {
-        if (b % 2)
-            res2 = (res*res2) % MOD ;
-        b /= 2;
-        res = (res*res) % MOD;
+        if (y & 1)
+            res = (res*x) % MOD;
+        y = y >> 1;
+        x = (x*x) % MOD;
     }
-    return (res*res2) % MOD;
+    return res;
 }
 ll add(ll a,ll b)
 {
