@@ -107,25 +107,6 @@ struct segTree
         segData[ni].isLazy = false;
     }
 
-    Node get(int l, int r, int ni, int lx, int rx)
-    {
-        propagate(ni, lx, rx);
-        if (lx >= r or rx <= l)
-            return Node();
-        if (lx >= l and rx <= r)
-            return segData[ni];
-
-        int mid = (rx + lx) / 2;
-        Node left = get(l, r, 2 * ni + 1, lx, mid);
-        Node right = get(l, r, 2 * ni + 2, mid, rx);
-
-        return merge(left, right);
-    }
-    int get(int l, int r)
-    {
-        return get(l, r, 0, 0, treeSize).sum;
-    }
-
     void update(int l, int r, int val, int ni, int lx, int rx)
     {
         propagate(ni, lx, rx);
@@ -146,6 +127,25 @@ struct segTree
     void update(int l, int r, int val)
     {
         update(l, r, val, 0, 0, treeSize);
+    }
+
+    Node get(int l, int r, int ni, int lx, int rx)
+    {
+        propagate(ni, lx, rx);
+        if (lx >= r or rx <= l)
+            return Node();
+        if (lx >= l and rx <= r)
+            return segData[ni];
+
+        int mid = (rx + lx) / 2;
+        Node left = get(l, r, 2 * ni + 1, lx, mid);
+        Node right = get(l, r, 2 * ni + 2, mid, rx);
+
+        return merge(left, right);
+    }
+    int get(int l, int r)
+    {
+        return get(l, r, 0, 0, treeSize).sum;
     }
 };
 
@@ -183,3 +183,4 @@ signed main()
     }
 
 }
+
