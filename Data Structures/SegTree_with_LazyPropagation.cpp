@@ -95,30 +95,6 @@ struct segTree
         build(arr, 0, 0, treeSize);
     }
 
-    void set(int idx, int val, int ni, int lx, int rx)
-    {
-        if (rx - lx == 1)
-        {
-            segData[ni].change(val, lx, rx);
-            return;
-        }
-
-        int mid = (rx + lx) / 2;
-        if (idx < mid)
-        {
-            set(idx, val, 2 * ni + 1, lx, mid);
-        }
-        else
-        {
-            set(idx, val, 2 * ni + 2, mid, rx);
-        }
-        segData[ni] = merge(segData[2 * ni + 1], segData[2 * ni + 2]);
-    }
-    void set(int idx, int val)
-    {
-        set(idx, val, 0, 0, treeSize);
-    }
-
     void propagate(int ni, int lx, int rx)
     {
         if (rx - lx == 1 or !segData[ni].isLazy)
@@ -205,4 +181,5 @@ signed main()
     {
         solve();
     }
+
 }
